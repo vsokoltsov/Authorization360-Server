@@ -25,3 +25,15 @@ python_shell:
 	@echo "$@"
 	docker exec -it authorization360 \
 		flask shell
+
+.PHONY: alembic
+alembic:
+	@echo "$@"
+	docker exec -it authorization360 \
+		alembic -c alembic/alembic.ini $(ARGS)
+
+.PHONY: pip_compile
+pip_compile:
+	@echo "$@"
+	docker exec -it authorization360 \
+		pip-compile --output-file requirements.txt requirements.in
