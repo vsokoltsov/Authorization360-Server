@@ -6,12 +6,13 @@ from sqlalchemy import pool
 
 from alembic import context
 
-SQLALCHEMY_URL = 'postgresql+psycopg2://{}:{}@authorization360_db/{}'
+from app.config import get_config_file
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-
+conf_cls = get_config_file()
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
@@ -26,12 +27,9 @@ target_metadata = None
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-user = os.environ.get('POSTGRES_USER')
-password = os.environ.get('POSTGRES_PASSWORD')
-database = os.environ.get('POSTGRES_DB')
-url = SQLALCHEMY_URL.format(user, password, database)
+
 config.set_main_option(
-    'sqlalchemy.url', url)
+    'sqlalchemy.url', conf_cls.DATABASE_URI)
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
