@@ -1,6 +1,8 @@
 Flask
+flask-sqlalchemy
 Alembic
 psycopg2
 python-dotenv
 pip-tools
 ipdb
+py-bcrypt
