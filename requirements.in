@@ -1,2 +1,4 @@
 Flask
 Alembic
+psycopg2
+python-dotenv
