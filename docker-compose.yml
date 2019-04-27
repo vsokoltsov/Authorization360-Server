@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  authorization360_db:
+    container_name: authorization360_db
+    image: postgres
+    environment:
+      POSTGRES_DB: 'authorization360'
+    volumes:
+      - auth360_pg_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  authorization360:
+    image: 'vsokoltsov/authorization360'
+    container_name: authorization360
+    command: bash -c "flask run --host 0.0.0.0"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file: ./.env
+    volumes:
+      - .:/authorization360
+    ports:
+      - '5000:5000'
+    depends_on:
+      - authorization360_db
+
+volumes:
+  auth360_pg_data:
