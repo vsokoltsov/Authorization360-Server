@@ -6,3 +6,5 @@ python-dotenv
 pip-tools
 ipdb
 py-bcrypt
+flask-restful
+marshmallow
