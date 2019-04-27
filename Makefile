@@ -29,7 +29,7 @@ python_shell:
 .PHONY: alembic
 alembic:
 	@echo "$@"
-	docker exec -it authorization360 \
+	docker exec -it -e PYTHONPATH=. authorization360 \
 		alembic -c alembic/alembic.ini $(ARGS)
 
 .PHONY: pip_compile
