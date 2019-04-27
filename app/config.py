@@ -23,7 +23,8 @@ class Config():
     """ Base config class. """
 
     DEBUG = True
-    DATABASE_URI = get_database_path()
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = get_database_path()
 
 class DevelopmentConfig(Config):
     """ Config for development environment. """
