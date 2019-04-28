@@ -6,6 +6,8 @@
 #
 alembic==1.0.9
 aniso8601==6.0.0          # via flask-restful
+atomicwrites==1.3.0       # via pytest
+attrs==19.1.0             # via pytest
 backcall==0.1.0           # via ipython
 cerberus==1.2
 click==7.0                # via flask, pip-tools
@@ -22,22 +24,27 @@ jinja2==2.10.1            # via flask
 mako==1.0.9               # via alembic
 markupsafe==1.1.1         # via jinja2, mako
 marshmallow==2.19.2
+more-itertools==7.0.0     # via pytest
 parso==0.4.0              # via jedi
 pexpect==4.7.0            # via ipython
 pickleshare==0.7.5        # via ipython
 pip-tools==3.6.1
+pluggy==0.9.0             # via pytest
 prompt-toolkit==2.0.9     # via ipython
 psycopg2==2.8.2
 ptyprocess==0.6.0         # via pexpect
 py-bcrypt==0.4
+py==1.8.0                 # via pytest
 pygments==2.3.1           # via ipython
 pyjwt==1.7.1
+pytest==4.4.1
 python-dateutil==2.8.0    # via alembic
 python-dotenv==0.10.1
 python-editor==1.0.4      # via alembic
 pytz==2019.1              # via flask-restful
-six==1.12.0               # via flask-restful, pip-tools, prompt-toolkit, python-dateutil, traitlets
+six==1.12.0               # via flask-restful, pip-tools, prompt-toolkit, pytest, python-dateutil, traitlets
 sqlalchemy==1.3.3         # via alembic, flask-sqlalchemy
 traitlets==4.3.2          # via ipython
+ujson==1.35
 wcwidth==0.1.7            # via prompt-toolkit
 werkzeug==0.15.2          # via flask

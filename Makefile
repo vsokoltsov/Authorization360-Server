@@ -37,3 +37,9 @@ pip_compile:
 	@echo "$@"
 	docker exec -it authorization360 \
 		pip-compile --output-file requirements.txt requirements.in
+
+.PHONY: test
+test:
+	@echo "$@"
+		docker exec -it -e PYTHONPATH=. authorization360 \
+			pytest -s $(ARGS)

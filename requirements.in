@@ -10,3 +10,5 @@ flask-restful
 marshmallow
 cerberus
 PyJWT
+ujson
+pytest
