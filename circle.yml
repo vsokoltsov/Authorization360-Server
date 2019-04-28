@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            touch .env
+            echo "FLASK_ENV=test" >> .env
+            echo "POSTGRES_USER=test" >> .env
+            echo "POSTGRES_PASSWORD=test" >> .env
+            echo "POSGTGRES_DB_TEST=auth360_test" >> .env
+            echo "JWT_SECRET='1231412312'" >> .env
+            pip install docker-compose==1.15.0
+      - run:
+          name: Run tests
+          command: |
+            docker-compose up -d
+            make test
