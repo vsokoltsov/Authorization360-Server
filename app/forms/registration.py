@@ -2,6 +2,7 @@ from . import BaseForm, sqlalchemy
 
 from app.models import db
 from app.models.user import User
+from app.services.authorization import encode_user
 
 class RegistrationForm(BaseForm):
     schema = {
@@ -36,6 +37,7 @@ class RegistrationForm(BaseForm):
             user = User(email=email, password=password)
             db.session.add(user)
             db.session.commit()
+            self.token = encode_user(user)
             return True
         except sqlalchemy.exc.IntegrityError:
             self.errors['user'] = ['User with this email already exists']

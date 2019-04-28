@@ -9,3 +9,4 @@ py-bcrypt
 flask-restful
 marshmallow
 cerberus
+PyJWT
