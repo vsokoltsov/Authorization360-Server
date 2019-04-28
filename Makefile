@@ -1,3 +1,5 @@
+include .env
+
 .PHONY: up
 up: docker-compose.yml
 	@echo "$@"
@@ -39,7 +41,10 @@ pip_compile:
 		pip-compile --output-file requirements.txt requirements.in
 
 .PHONY: test
-test:
+test: .env
 	@echo "$@"
-		docker exec -it -e PYTHONPATH=. authorization360 \
-			pytest -s $(ARGS)
+	@echo "${POSTGRES_USER}"
+	docker exec -it authorization360_db /bin/bash -c \
+		"dropdb --if-exists -U "${POSTGRES_USER}" "${POSGTGRES_DB_TEST}" && createdb -U "${POSTGRES_USER}" "${POSGTGRES_DB_TEST}""
+	docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test authorization360 \
+			flask test $(ARGS)
