@@ -31,7 +31,7 @@ python_shell:
 .PHONY: alembic
 alembic:
 	@echo "$@"
-	docker exec -it -e PYTHONPATH=. authorization360 \
+	docker exec -it -e PYTHONPATH=. -e FLASK_ENV=development authorization360 \
 		alembic -c alembic/alembic.ini $(ARGS)
 
 .PHONY: pip_compile
@@ -46,5 +46,5 @@ test: .env
 	@echo "${POSTGRES_USER}"
 	docker exec -it authorization360_db /bin/bash -c \
 		"dropdb --if-exists -U "${POSTGRES_USER}" "${POSGTGRES_DB_TEST}" && createdb -U "${POSTGRES_USER}" "${POSGTGRES_DB_TEST}""
-	docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test authorization360 \
+	docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test -e POSTGRES_DB="${POSGTGRES_DB_TEST}" authorization360 \
 			flask test $(ARGS)

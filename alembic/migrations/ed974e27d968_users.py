@@ -26,9 +26,9 @@ def upgrade():
         sa.Column('created_at', sa.DateTime),
         sa.Column('updated_at', sa.DateTime),
     )
-    op.create_unique_constraint("unique_user_email", "users", ["email"])
+    op.create_index("unique_user_email", "users", ["email"], unique=True)
 
 
 def downgrade():
-    op.drop_constraint('unique_user_email', 'users')
+    op.drop_index('unique_user_email', 'users')
     op.drop_table('users')

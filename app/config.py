@@ -1,4 +1,5 @@
 import os
+import sys
 
 def get_config_file():
     """ Get config file path based on the environment. """
@@ -6,7 +7,7 @@ def get_config_file():
     default_config_class = 'Config'
     flask_env = os.environ.get('FLASK_ENV', default_config_class)
     try:
-        return getattr(__name__, f'{flask_env.capitalize()}Config')
+        return getattr(sys.modules[__name__], f'{flask_env.capitalize()}Config')
     except AttributeError:
         return Config
 
