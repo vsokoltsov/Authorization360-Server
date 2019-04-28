@@ -7,6 +7,7 @@
 alembic==1.0.9
 aniso8601==6.0.0          # via flask-restful
 backcall==0.1.0           # via ipython
+cerberus==1.2
 click==7.0                # via flask, pip-tools
 decorator==4.4.0          # via ipython, traitlets
 flask-restful==0.3.7

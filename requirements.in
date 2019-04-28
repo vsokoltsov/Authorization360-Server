@@ -8,3 +8,4 @@ ipdb
 py-bcrypt
 flask-restful
 marshmallow
+cerberus
