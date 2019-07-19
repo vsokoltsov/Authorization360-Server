@@ -11,13 +11,12 @@ jobs:
             echo "FLASK_ENV=test" >> .env
             echo "POSTGRES_USER=test" >> .env
             echo "POSTGRES_PASSWORD=test" >> .env
-            echo "POSGTGRES_DB=auth360" >> .env
+            echo "POSGTGRES_DB=auth360_test" >> .env
             echo "POSTGRES_HOST=authorization360_db" >> .env
-            echo "POSGTGRES_DB_TEST=auth360_test" >> .env
             echo "JWT_SECRET='1231412312'" >> .env
             pip install docker-compose==1.15.0
       - run:
           name: Run tests
           command: |
             docker-compose up -d
-            docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test -e POSTGRES_DB="${POSGTGRES_DB_TEST}" -e POSTGRES_HOST="${POSTGRES_HOST}" authorization360 flask test
+            docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test -e POSTGRES_HOST="${POSTGRES_HOST}" authorization360 flask test
