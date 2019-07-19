@@ -41,7 +41,7 @@ pip_compile:
 		pip-compile --output-file requirements.txt requirements.in
 
 .PHONY: test
-test: .env
+test:
 	@echo "$@"
 	@echo "${POSTGRES_USER}"
 	docker exec -it authorization360_db /bin/bash -c \
