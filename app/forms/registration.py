@@ -1,8 +1,10 @@
-from . import BaseForm, sqlalchemy
+import sqlalchemy
 
+from .base import BaseForm
 from app.models import db
 from app.models.user import User
 from app.services.authorization import encode_user
+from app.utils.fields import EMAIL_REGEX
 
 class RegistrationForm(BaseForm):
     schema = {
@@ -10,7 +12,7 @@ class RegistrationForm(BaseForm):
             'type': 'string',
             'empty': False,
             'required': True,
-            'regex': r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$',
+            'regex': EMAIL_REGEX,
         },
         'password': {
             'type': 'string',
