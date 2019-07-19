@@ -20,4 +20,4 @@ jobs:
           name: Run tests
           command: |
             docker-compose up -d
-            docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test -e POSTGRES_DB="${POSGTGRES_DB_TEST}" authorization360 flask test
+            docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test -e POSTGRES_DB="${POSGTGRES_DB_TEST}" POSTGRES_HOST="${POSTGRES_HOST}" authorization360 flask test
