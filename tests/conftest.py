@@ -59,7 +59,7 @@ def db_session(monkeypatch):
 
 @pytest.fixture
 def user(db_session):
-        user = User(email="example@mail.com", password="password")
-        db_session.add(user)
-        db_session.commit()
-        return user
+    user = User(email="example@mail.com", password="password")
+    db_session.add(user)
+    db_session.commit()
+    return user
