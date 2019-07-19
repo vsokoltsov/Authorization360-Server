@@ -1,5 +1,7 @@
 ## Authorization360
 
+[![CircleCI](https://circleci.com/gh/vsokoltsov/Authorization360-Server/tree/add-circleci.svg?style=svg)](https://circleci.com/gh/vsokoltsov/Authorization360-Server/tree/add-circleci)
+
 Authorization service for teamcircle projects
 
 ## Setup
