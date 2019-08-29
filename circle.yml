@@ -19,19 +19,19 @@ jobs:
       - image: google/cloud-sdk
     steps:
       - run:
-        name: Set GCP dependencies
-        command: |
-          gcloud auth activate-service-account --key-file=$GCLOUD_SERVICE_KEY
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          name: Set GCP dependencies
+          command: |
+            gcloud auth activate-service-account --key-file=$GCLOUD_SERVICE_KEY
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
       - run:
-        name: Set environment variables
-        command: |
-          bash ./deploy/gcp/production.sh
+          name: Set environment variables
+          command: |
+            bash ./deploy/gcp/production.sh
       - run:
-        name: Deploy app to Google App Engine
-        command: |
-          gcloud app deploy --quiet
+          name: Deploy app to Google App Engine
+          command: |
+            gcloud app deploy --quiet
 workflows:
   version: 2
   build_and_deploy:
