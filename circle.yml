@@ -7,16 +7,25 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            touch .env
-            echo "FLASK_ENV=test" >> .env
-            echo "POSTGRES_USER=test" >> .env
-            echo "POSTGRES_PASSWORD=test" >> .env
-            echo "POSTGRES_DB=auth360_test" >> .env
-            echo "POSTGRES_HOST=authorization360_db" >> .env
-            echo "JWT_SECRET='1231412312'" >> .env
+            bash ./deploy/gcp/test.sh
             pip install docker-compose==1.15.0
       - run:
           name: Run tests
           command: |
             docker-compose up -d
             docker exec -it -e PYTHONPATH=. authorization360 flask test
+  deploy:
+    docker:
+      - image: google/cloud-sdk
+    steps:
+      - run:
+        name: Set GCP dependencies
+        command: |
+          gcloud auth activate-service-account --key-file=$GCLOUD_SERVICE_KEY
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+      - run:
+        name: Set environment variables
+        command: |
+          bash ./deploy/gcp/production.sh
+  
