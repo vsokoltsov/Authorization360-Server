@@ -10,4 +10,4 @@ class CurrentUserResource(Resource):
     method_decorators = [authenticate]
 
     def get(self):
-        return {'current_user': current_user_schema.dump(g.user) }, 200
+        return {'current_user': current_user_schema.dump(g.user).data }, 200

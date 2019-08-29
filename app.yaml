@@ -1,0 +1,11 @@
+runtime: python37
+env: standard
+entrypoint: uwsgi --http-socket :8080 --wsgi app --callable app --master --processes 1 --threads 2
+
+env_variables:
+  PLATFORM: GCP
+  FLASK_APP: 'app:create_app'
+
+handlers:
+- url: '/.*'
+  script: auto

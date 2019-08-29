@@ -32,7 +32,7 @@ def encode_user(user):
     :rtype: str
     """
 
-    return jwt.encode({'id': user.id}, _get_jwt_secret(), 'HS256')
+    return jwt.encode({'id': user.id}, _get_jwt_secret(), 'HS256').decode('utf8')
 
 
 def decode_user(token):
