@@ -11,5 +11,5 @@ def run_migrations():
         Path(__file__).parent.parent.parent, 'alembic', 'alembic.ini'
     )
     alembic_cfg = Config(alembic_conf_path)
-    alembic_cfg.set_main_option('sqlalchemy.url', str(get_database_path()))
+    alembic_cfg.set_main_option('sqlalchemy.url', get_database_path())
     command.upgrade(alembic_cfg, "head")

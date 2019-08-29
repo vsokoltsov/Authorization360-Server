@@ -15,7 +15,8 @@ def _init_db(app):
 
     app.config['SQLALCHEMY_DATABASE_URI'] = get_database_path()
     db.init_app(app)
-    run_migrations()
+    if os.environ.get('FLASK_ENV') != 'test':
+        run_migrations()
 
 def create_app():
     """ Application factory. """

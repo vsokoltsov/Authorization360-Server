@@ -4,10 +4,6 @@ import os
 from flask.cli import with_appcontext
 import click
 import pytest
-from alembic.config import Config
-from alembic import command
-from pathlib import Path
-import alembic
 from app.config import get_database_path
 
 from app.models import db
