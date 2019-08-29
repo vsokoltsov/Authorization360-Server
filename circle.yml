@@ -32,4 +32,12 @@ jobs:
         name: Deploy app to Google App Engine
         command: |
           gcloud app deploy --quiet
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
   
