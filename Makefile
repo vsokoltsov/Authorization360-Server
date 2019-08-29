@@ -28,6 +28,12 @@ python_shell:
 	docker exec -it authorization360 \
 		flask shell
 
+.PHONY: install
+install:
+	@echo "$@"
+	docker exec -it authorization360 \
+		pip install -r requirements.txt
+
 .PHONY: alembic
 alembic:
 	@echo "$@"

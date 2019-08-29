@@ -12,3 +12,5 @@ cerberus
 PyJWT
 ujson
 pytest
+uwsgi
+python-dotenv

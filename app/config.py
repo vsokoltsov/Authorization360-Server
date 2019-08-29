@@ -1,5 +1,6 @@
 import os
 import sys
+import sqlalchemy
 
 def get_config_file():
     """ Get config file path based on the environment. """
@@ -18,7 +19,14 @@ def get_database_path():
     user = os.environ.get('POSTGRES_USER')
     password = os.environ.get('POSTGRES_PASSWORD')
     database = os.environ.get('POSTGRES_DB')
-    return f'postgresql+psycopg2://{user}:{password}@{host}/{database}'
+    url = sqlalchemy.engine.url.URL(
+        drivername='postgresql+psycopg2',
+        username=user,
+        password=password,
+        database=database,
+        query={'host': host}
+    )
+    return str(url)
 
 
 class Config():
@@ -26,7 +34,6 @@ class Config():
 
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = get_database_path()
 
 class DevelopmentConfig(Config):
     """ Config for development environment. """
