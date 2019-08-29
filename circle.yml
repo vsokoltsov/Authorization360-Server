@@ -18,6 +18,7 @@ jobs:
     docker:
       - image: google/cloud-sdk
     steps:
+      - checkout
       - run:
           name: Set GCP dependencies
           command: |
