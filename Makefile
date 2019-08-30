@@ -49,7 +49,6 @@ pip_compile:
 .PHONY: test
 test:
 	@echo "$@"
-	@echo "${POSTGRES_USER}"
 	docker exec -it authorization360_db /bin/bash -c \
 		"dropdb --if-exists -U "${POSTGRES_USER}" "${POSGTGRES_DB_TEST}" && createdb -U "${POSTGRES_USER}" "${POSGTGRES_DB_TEST}""
 	docker exec -it -e PYTHONPATH=. -e FLASK_ENV=test -e POSTGRES_DB="${POSGTGRES_DB_TEST}" authorization360 \

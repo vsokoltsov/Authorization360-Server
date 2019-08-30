@@ -14,3 +14,4 @@ ujson
 pytest
 uwsgi
 python-dotenv
+flask-cors

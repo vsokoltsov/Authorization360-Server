@@ -7,7 +7,7 @@ class AuthorizationResource(Resource):
 
     def post(self):
         """ Authorize user via credentials """
-        
+
         form = AuthorizationForm(params=request.get_json())
         if form.submit():
             return {'token': str(form.token)}, 200
