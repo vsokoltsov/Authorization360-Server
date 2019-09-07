@@ -1,7 +1,6 @@
 import os
 import sys
 import sqlalchemy
-from app.logger import logger
 
 def get_config_file():
     """ Get config file path based on the environment. """
@@ -27,7 +26,6 @@ def get_database_path():
         database=database,
         query={'host': host}
     )
-    logger.debug(f'DATABASE URL IS {str(url)}')
     return str(url)
 
 
