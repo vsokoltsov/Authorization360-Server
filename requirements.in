@@ -15,3 +15,4 @@ pytest
 uwsgi
 python-dotenv
 flask-cors
+google-cloud-logging

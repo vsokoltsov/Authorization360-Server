@@ -1,6 +1,7 @@
 import os
 import sys
 import sqlalchemy
+from app.logger import logger
 
 def get_config_file():
     """ Get config file path based on the environment. """
@@ -15,10 +16,10 @@ def get_config_file():
 def get_database_path():
     """ Set default database path based on environment variables. """
 
-    host = os.environ.get('POSTGRES_HOST')
-    user = os.environ.get('POSTGRES_USER')
-    password = os.environ.get('POSTGRES_PASSWORD')
-    database = os.environ.get('POSTGRES_DB')
+    host = os.environ.get('POSTGRES_HOST', '').strip()
+    user = os.environ.get('POSTGRES_USER', '').strip()
+    password = os.environ.get('POSTGRES_PASSWORD', '').strip()
+    database = os.environ.get('POSTGRES_DB', '').strip()
     url = sqlalchemy.engine.url.URL(
         drivername='postgresql+psycopg2',
         username=user,
@@ -26,6 +27,7 @@ def get_database_path():
         database=database,
         query={'host': host}
     )
+    logger.debug(f'DATABASE URL IS {str(url)}')
     return str(url)
 
 
