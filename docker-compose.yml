@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   authorization360_db:
@@ -8,10 +8,10 @@ services:
     volumes:
       - auth360_pg_data:/var/lib/postgresql/data
     restart: always
-    expose:
-      - 5432
     ports:
-      - 5432:5432
+      - 54321:5432
+    networks:
+      - auth
 
   authorization360:
     image: 'vsokoltsov/authorization360'
@@ -27,6 +27,15 @@ services:
       - '5000:5000'
     depends_on:
       - authorization360_db
+    networks:
+      - teamreel
+      - auth
 
 volumes:
   auth360_pg_data:
+
+networks:
+  teamreel:
+    name: teamreel
+  auth:
+    name: teamreel_auth
